@@ -1,0 +1,15 @@
+---
+- name: Dictionary
+  hosts: webservers
+  vars:
+    students:
+      - AAA:
+          city: aaa
+          address: 12345-7578-45468
+      - BBB:
+          city: bbb
+          address: 54985-74598-854
+  tasks:
+    - name: display dictionary
+      debug:
+        msg: "{{ students[0] }}"

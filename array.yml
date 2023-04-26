@@ -1,0 +1,13 @@
+---
+- name: Test Array
+  hosts: webservers
+  vars:
+    students:
+      - AAA
+      - BBB
+      - CCC
+      - DDD
+  tasks:
+    - name: Display Record
+      debug:
+        msg: "{{ students[0] }}"
