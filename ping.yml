@@ -1,0 +1,6 @@
+---
+- name: Ping test
+  hosts: webservers
+  tasks:
+    - name: Ping start
+      ping:
