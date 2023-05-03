@@ -1,0 +1,9 @@
+---
+- name: Install Multiple Packages
+  hosts: webservers
+  tasks:
+    name: Insall Begin
+    apt:
+      name: ["httpd", "nginx", "postgresql"]
+      state: present
+      update_cache: true

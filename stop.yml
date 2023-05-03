@@ -1,0 +1,20 @@
+---
+- name: Configuring Apache Web Server
+  hosts: webservers
+  tasks:
+    - name: Stop Apache Service
+      service:
+        name: httpd
+        state: stop
+
+    - name: Un-Install Apache Packages
+      apt:
+        name: httpd
+        state: absent
+        update_cache: true
+
+    - name: Un-Install firewalld
+      apt:
+        name: firewalld
+        state: absent
+        update_cache: true

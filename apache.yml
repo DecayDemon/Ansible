@@ -1,0 +1,41 @@
+---
+- name: Configuring Apache Web Server
+  hosts: webservers
+  tasks:
+    - name: Install Apache Packages
+      apt:
+        name: httpd
+        state: present
+        update_cache: true
+
+    - name: Start Apache Service
+      service:
+        name: httpd
+        state: started
+
+    - name: Install firewalld
+      apt:
+        name: firewalld
+        state: present
+        update_cache: true
+
+    - name: Add Firewall
+      firewalld:
+        port: 80/tcp
+        permanent: true
+        state: enabled
+
+    - name: Reload Firewall Configuration For New Rule
+      systemd:
+        name: firewalld
+        state: reloaded
+
+    - name: Copy Index File To Apache Directory
+      copy:
+        src: /temp/index.html
+        dest: /var/www/html/
+
+    - name: Restart Apache Service
+      service:
+        name: httpd
+        state: restarted
